@@ -1,0 +1,47 @@
+<div class="container" style="padding:10px">
+
+    <form method="post" [formGroup]="frmRegionRegistro" id="frmDataReg">
+        <div class="formGroup" style="padding-bottom:10px">
+            <select name="pais" id="pais" (change)="paisSelectChange($event)" class="form-select" style="width:250px">
+                <option value="0" selected>Seleccione un pais </option>
+                <option *ngFor="let pais of misPaises " value="{{pais.id}}">{{pais.nombre}}</option>
+            </select>
+            <ng-container *ngIf="paisId==0 ">
+                <div class="alert alert-warning" style="width: 250px;">
+                    Debe Seleccionar el Pais...
+                </div>
+            </ng-container>
+
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="mb-4">
+                    <label for="nombreRegion" class="form-label">Nombre de Region</label>
+
+                    <input type="text" formControlName="nombre" class="form-control " id="nombreRegion"
+                        name="nombreRegion" aria-describedby="pais" required>
+
+                    <ng-container *ngFor="let validation of validacionCampos.nombre">
+                        <div *ngIf="frmRegionRegistro.controls['nombre'].hasError(validation.type) && (frmRegionRegistro.controls['nombre'].dirty || frmRegionRegistro.controls['nombre'].touched)">
+                            <div class="alert alert-danger">{{validation.message}}</div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <textarea name="descripcion" formControlName="descripcion" rows="5" class="form-control"
+                        id="descripcion"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="text-center">
+            <button id="enviar" class="btn btn-primary" (click)="onSubmit()" disabled>Guardar</button>
+            <button type="reset" id="reset" class="btn btn-danger" style="margin-left: 10px" (click)="borrar()">Cancelar</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,12 @@
+
+<div class="contanier">
+  
+    <div class="loginmodal-container shadow p-2 mb-5">
+      <h1 class="alert alert-primary bg-gradient">Ingreso de Usuario</h1>
+      <form [formGroup]="frmLogin" id="formLogin">
+        <input type="text" name="nusuario" placeholder="Usuario" formControlName="nombre_usuario" id="nusuario"  >
+        <input type="password" name="pusuaro" placeholder="Contraseña"  formControlName="pass_usuario" id="pusuaro"  >
+        <button type="button" class="btn btn-primary" (click)="loginUser()">Ingresar</button>
+      </form>
+    </div>
+  </div>
